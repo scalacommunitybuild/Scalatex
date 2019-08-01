@@ -29,10 +29,10 @@ releaseProcess := Seq[ReleaseStep](
 lazy val sharedSettings = Seq(
   version := Constants.version,
   organization := "com.lihaoyi",
-  crossScalaVersions:= Seq(Constants.scala211, Constants.scala212),
-  scalaVersion := Constants.scala212,
-  libraryDependencies += "com.lihaoyi" %% "acyclic" % "0.1.5" % "provided",
-  addCompilerPlugin("com.lihaoyi" %% "acyclic" % "0.1.5"),
+  crossScalaVersions:= Seq(Constants.scala211, Constants.scala212, Constants.scala213),
+  scalaVersion := Constants.scala213,
+  libraryDependencies += "com.lihaoyi" %% "acyclic" % "0.2.0" % "provided",
+  addCompilerPlugin("com.lihaoyi" %% "acyclic" % "0.2.0"),
   autoCompilerPlugins := true,
   publishTo := Some("releases"  at "https://oss.sonatype.org/service/local/staging/deploy/maven2"),
   pomExtra :=
@@ -69,7 +69,7 @@ lazy val api = project.settings(sharedSettings:_*)
   .settings(
     name := "scalatex-api",
     libraryDependencies ++= Seq(
-      "com.lihaoyi" %% "utest" % "0.6.6" % "test",
+      "com.lihaoyi" %% "utest" % "0.7.1" % "test",
       "org.scalameta" %% "scalaparse" % "1.0.1",
       "com.lihaoyi" %% "scalatags" % Constants.scalaTags,
       "org.scala-lang" % "scala-reflect" % scalaVersion.value
@@ -88,7 +88,7 @@ lazy val scalatexSbtPlugin = project.settings(sharedSettings:_*)
   // scalatexSbtPlugin/publish uses sbt 1.0 by default. To publish for 0.13, run
   // ^^ 0.13.16 # similar as ++2.12.3 but for sbtVersion instead.
   // scalatexSbtPlugin/publish
-  crossSbtVersions := List("1.2.4", "0.13.17"),
+  crossSbtVersions := List("1.2.8", "0.13.18"),
   sbtPlugin := true,
   (unmanagedSources in Compile) += baseDirectory.value/".."/"project"/"Constants.scala"
 )

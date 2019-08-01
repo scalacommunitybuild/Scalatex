@@ -63,7 +63,7 @@ class Parser(indent: Int = 0, offset: Int = 0) {
   val Indent = P( "\n" ~ IndentSpaces )
   val IndentPrefix = P( Index ~ (Indent | Start).! ).map(Ast.Block.Text.tupled)
   val IndentScalaChain = P(ScalaChain ~ (IndentBlock | BraceBlock).?).map{
-    case (chain, body) => chain.copy(parts = chain.parts ++ body)
+    case (chain, body) => chain.copy(parts = (chain.parts ++ body).toSeq)
   }
 
   val IndentBlock = P( LookaheadValue("\n".rep(1) ~ IndentSpaces.!) ~ Index ).flatMap{
@@ -94,7 +94,7 @@ class Parser(indent: Int = 0, offset: Int = 0) {
   )
 
   val ScalaChain = P( Index ~ Code ~ Extension.rep ).map {
-    case (x, c, ex) => Ast.Chain(x, c, ex)
+    case (x, c, ex) => Ast.Chain(x, c, ex.toSeq)
   }
 
   val Extension = P(
@@ -131,7 +131,7 @@ class Parser(indent: Int = 0, offset: Int = 0) {
   val File = P( Body/* ~ End */)
   val BodyNoBrace = P( BodyEx("}") )
   def BodyEx(exclusions: String) = P( Index ~ BodyItem(exclusions).rep ).map{
-    case (i, x) => Ast.Block(i, flattenText(x.flatten))
+    case (i, x) => Ast.Block(i, flattenText(x.flatten.toSeq))
   }
 
   def flattenText(seq: Seq[Ast.Block.Sub]) = {
