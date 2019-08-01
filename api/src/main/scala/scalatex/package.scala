@@ -7,6 +7,7 @@ import scalatags.Text.all._
 import scalatex.stages.{Ast, Parser, Compiler}
 import scala.language.experimental.macros
 import acyclic.file
+import scala.meta.internal.fastparse
 import fastparse.all._
 
 package object scalatex {

@@ -5,6 +5,7 @@ import acyclic.file
 import scalaparse.Scala
 import scalaparse.Scala._
 import scalaparse.syntax._
+import scala.meta.internal.fastparse
 import fastparse.all._
 
 /**

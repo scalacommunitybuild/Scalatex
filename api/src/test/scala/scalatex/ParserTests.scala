@@ -5,6 +5,7 @@ package scalatex
 import scalatex.stages.{Trim, Parser, Ast}
 import scalatex.stages.Ast.Block.{IfElse, For, Text}
 import Ast.Chain.Args
+import scala.meta.internal.fastparse
 
 object ParserTests extends utest.TestSuite{
   import Ast._

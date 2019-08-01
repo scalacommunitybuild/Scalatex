@@ -3,6 +3,7 @@ package scalatex
 import utest._
 
 import scalatex.Internals.{DebugFailure, twRuntimeErrors, twfRuntimeErrors}
+import scala.meta.internal.fastparse
 
 /**
 * Created by haoyi on 7/14/14.
